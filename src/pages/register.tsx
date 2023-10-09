@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Regfrom() {
 
-  const [{ error: errorMessage, loading: IndexActivityLoading }, executeIndexActivity] = useAxios(
+  const [, executeIndexActivity] = useAxios(
     { url: '/api/regform', method: 'POST' },
     { manual: true }
   )

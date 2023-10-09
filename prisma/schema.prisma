@@ -3,24 +3,27 @@
 
 
 
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
-  provider = "mongodb"
+  provider = "cockroachdb"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-  output   = "./generated/client"
+model Widget {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 }
 
 model RegSchool {
-  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   irImg         String?
   irDescription String?
 }
 
 model Regfrom {
-  id              String  @id @default(auto()) @map("_id") @db.ObjectId
+   id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   educationOffice String?
   fname           String?
   lname           String?
@@ -67,7 +70,7 @@ model Regfrom {
 }
 
 model RegisterForm {
-  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+   id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   //ข้อมูลผู้สมัคร
   regId         String? //รหัสนักศึกษา
   regIdpersonal String? //รหัหสบัตรประชาชน
