@@ -12,28 +12,28 @@
 //                 const page: number = Number(req.query.page) || 1;
 //                 const pageSize: number = Number(req.query.pageSize) || 10;
 
-//                 const regfrom = await prisma.regfrom.findMany({
+//                 const regform = await prisma.regform.findMany({
 //                     skip: (page - 1) * pageSize,
 //                     take: pageSize,
 //                 });
 
-//                 const totalregfrom = await prisma.regfrom.count();
-//                 const totalPage: number = Math.ceil(totalregfrom / pageSize);
-//                 res.status(200).json({ regfrom });
+//                 const totalregform = await prisma.regform.count();
+//                 const totalPage: number = Math.ceil(totalregform / pageSize);
+//                 res.status(200).json({ regform });
 //             } catch (error) {
-//                 res.status(500).json({ error: "An error occurred while fetching the regfrom" });
+//                 res.status(500).json({ error: "An error occurred while fetching the regform" });
 //             }
 //             break;
 
 //         case 'POST':
 //             try {
-//                 const newregfrom = await prisma.regfrom.create({
+//                 const newregform = await prisma.regform.create({
 //                     data: req.body,
 //                 });
 
-//                 res.status(201).json(newregfrom);
+//                 res.status(201).json(newregform);
 //             } catch (error) {
-//                 res.status(500).json({ error: "An error occurred while creating the regfrom" });
+//                 res.status(500).json({ error: "An error occurred while creating the regform" });
 //             }
 //             break;
 
@@ -58,30 +58,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 const page: number = Number(req.query.page) || 1;
                 const pageSize: number = Number(req.query.pageSize) || 10;
 
-                const regfrom = await prisma.regfrom.findMany({
+                const regform = await prisma.regform.findMany({
                     skip: (page - 1) * pageSize,
                     take: pageSize,
                 });
 
-                const totalregfrom = await prisma.regfrom.count();
-                const totalPage: number = Math.ceil(totalregfrom / pageSize);
-                res.status(200).json({ regfrom, totalPage });
+                const totalregform = await prisma.regform.count();
+                const totalPage: number = Math.ceil(totalregform / pageSize);
+                res.status(200).json({ regform, totalPage });
             } catch (error) {
                 console.error(error);
-                res.status(500).json({ error: "An error occurred while fetching the regfrom" });
+                res.status(500).json({ error: "An error occurred while fetching the regform" });
             }
             break;
 
         case 'POST':
             try {
-                const newregfrom = await prisma.regfrom.create({
+                const newregform = await prisma.regform.create({
                     data: req.body,
                 });
 
-                res.status(201).json(newregfrom);
+                res.status(201).json(newregform);
             } catch (error) {
                 console.error(error);
-                res.status(500).json({ error: "An error occurred while creating the regfrom" });
+                res.status(500).json({ error: "An error occurred while creating the regform" });
             }
             break;
 
