@@ -9,8 +9,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     switch (method) {
         case 'GET':
             try {
-                const page: number = Number(req.query.page) || 1;
-                const pageSize: number = Number(req.query.pageSize) || 10;
+                const page: number = Number(req.query.page as string) || 1;
+                const pageSize: number = Number(req.query.pageSize as string) || 10;
 
                 const regform = await prisma.regform.findMany({
                     skip: (page - 1) * pageSize,
@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 const totalPage: number = Math.ceil(totalregform / pageSize);
 
                 res.status(200).json({ regform, totalPage });
-            } catch (error) {
+            } catch (error: any) {
                 console.error(error);
                 res.status(500).json({ error: "An error occurred while fetching the regform" });
             }
@@ -36,7 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
                 res.setHeader('Content-Type', 'application/json');
                 res.status(201).json(newregform);
-            } catch (error) {
+            } catch (error: any) {
                 console.error(error);
                 res.status(500).json({ error: "An error occurred while creating the regform" });
             }
