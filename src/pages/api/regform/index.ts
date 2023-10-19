@@ -19,6 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
                 const totalregform = await prisma.regform.count();
                 const totalPage: number = Math.ceil(totalregform / pageSize);
+
                 res.status(200).json({ regform, totalPage });
             } catch (error) {
                 console.error(error);
@@ -28,10 +29,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         case 'POST':
             try {
+                // Validate and sanitize req.body if needed
                 const newregform = await prisma.regform.create({
                     data: req.body,
                 });
 
+                res.setHeader('Content-Type', 'application/json');
                 res.status(201).json(newregform);
             } catch (error) {
                 console.error(error);
